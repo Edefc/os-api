@@ -1,5 +1,6 @@
 package com.edenilson.osapi.services;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ import com.edenilson.osapi.repositories.OSRepository;
 import com.edenilson.osapi.repositories.TechnicianRepository;
 
 @Service
-public class DBService {
+public class DBService implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private TechnicianRepository technicianRepository;
