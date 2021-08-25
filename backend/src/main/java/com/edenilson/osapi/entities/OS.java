@@ -1,31 +1,59 @@
 package com.edenilson.osapi.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.edenilson.osapi.enuns.Priority;
 import com.edenilson.osapi.enuns.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class OS {
+@Entity
+@Table(name = "tb_os")
+public class OS implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime openDate;
-	private LocalDateTime openClosing;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime closingDate;
 	private Integer priority;
 	private String observance;
 	private Integer status;
+	
+	@ManyToOne
+	@JoinColumn(name = "technician_id")
 	private Technician technician;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 
 	public OS() {
 		super();
+		this.setOpenDate(LocalDateTime.now());
+		this.setPriority(Priority.BAIXA);
+		this.setStatus(Status.ANDAMENTO);;
 
 	}
 
-	public OS(Integer id, LocalDateTime openDate, LocalDateTime openClosing, Priority priority, String observance,
+	public OS(Integer id, Priority priority, String observance,
 			Status status, Technician technician, Client client) {
 		super();
 		this.id = id;
-		this.openDate = openDate;
-		this.openClosing = openClosing;
+		this.openDate = LocalDateTime.now();
 		this.priority = (priority == null) ? 0 : priority.getCod();
 		this.observance = observance;
 		this.status = (status == null) ? 0 : status.getCod();
@@ -50,11 +78,11 @@ public class OS {
 	}
 
 	public LocalDateTime getOpenClosing() {
-		return openClosing;
+		return closingDate;
 	}
 
 	public void setOpenClosing(LocalDateTime openClosing) {
-		this.openClosing = openClosing;
+		this.closingDate = openClosing;
 	}
 
 	public Priority getPriority() {
