@@ -8,18 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.edenilson.osapi.entities.Technician;
 import com.edenilson.osapi.repositories.TechnicianRepository;
+import com.edenilson.osapi.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TechnicianService implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private TechnicianRepository technicianRepository;
-	
+
 	public Technician findById(Integer id) {
-		
+
 		Optional<Technician> objTechnician = technicianRepository.findById(id);
-		return objTechnician.orElse(null);
+		return objTechnician.orElseThrow(() -> new ObjectNotFoundException(
+				"Tecnico não encontrado! " + id + ", Tipo " + Technician.class.getName()));
 	}
 
 }
