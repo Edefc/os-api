@@ -1,6 +1,7 @@
 package com.edenilson.osapi.services;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class TechnicianService implements Serializable {
 		Optional<Technician> objTechnician = technicianRepository.findById(id);
 		return objTechnician.orElseThrow(() -> new ObjectNotFoundException(
 				"Tecnico não encontrado! " + id + ", Tipo " + Technician.class.getName()));
+	}
+
+	public List<Technician> findAll() {
+		return technicianRepository.findAll();
 	}
 
 }

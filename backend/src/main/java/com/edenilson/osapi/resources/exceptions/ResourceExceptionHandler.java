@@ -9,11 +9,12 @@ import com.edenilson.osapi.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
+
 	@ExceptionHandler(ObjectNotFoundException.class)
-	public ResponseEntity<StandardError> objectNotFoundExceptionEntity(ObjectNotFoundException e){
-		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), e.getMessage());
-		
+	public ResponseEntity<StandardError> objectNotFoundExceptionEntity(ObjectNotFoundException e) {
+		StandardError error = new StandardError(System.currentTimeMillis(), 
+				HttpStatus.NOT_FOUND.value(), e.getMessage());
+
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 
