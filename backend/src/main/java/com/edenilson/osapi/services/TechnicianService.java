@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edenilson.osapi.dtos.TechnicianDto;
 import com.edenilson.osapi.entities.Technician;
 import com.edenilson.osapi.repositories.TechnicianRepository;
 import com.edenilson.osapi.services.exceptions.ObjectNotFoundException;
@@ -27,6 +28,14 @@ public class TechnicianService implements Serializable {
 
 	public List<Technician> findAll() {
 		return technicianRepository.findAll();
+	}
+
+	public Technician create(TechnicianDto objTechnicianDto) {
+		/*Technician newObjTechnician = new Technician(null, objTechnicianDto.getName(),
+				                                     objTechnicianDto.getCpf(), objTechnicianDto.getPhone());
+		return technicianRepository.save(newObjTechnician);*/
+		return  technicianRepository.save(new Technician(null, objTechnicianDto.getName(), objTechnicianDto.getCpf(), objTechnicianDto.getPhone()));
+
 	}
 
 }
