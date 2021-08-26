@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.edenilson.osapi.dtos.TechnicianDto;
 import com.edenilson.osapi.entities.Technician;
 import com.edenilson.osapi.repositories.TechnicianRepository;
+import com.edenilson.osapi.services.exceptions.DataIntegratyViolationException;
 import com.edenilson.osapi.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -34,8 +35,19 @@ public class TechnicianService implements Serializable {
 		/*Technician newObjTechnician = new Technician(null, objTechnicianDto.getName(),
 				                                     objTechnicianDto.getCpf(), objTechnicianDto.getPhone());
 		return technicianRepository.save(newObjTechnician);*/
+		if(findByCpf(objTechnicianDto) != null ) {
+			throw new DataIntegratyViolationException("CPF já cadastrado na base de dados! ");
+		}
 		return  technicianRepository.save(new Technician(null, objTechnicianDto.getName(), objTechnicianDto.getCpf(), objTechnicianDto.getPhone()));
 
+	}
+	
+	public Technician findByCpf(TechnicianDto objTechnicianDto) {
+		Technician objTechnician = technicianRepository.findByCpf(objTechnicianDto.getCpf());
+		if(objTechnician != null) {
+			return objTechnician;
+		}
+		return null;
 	}
 
 }
