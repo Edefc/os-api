@@ -30,7 +30,7 @@ public class DBService implements Serializable {
 
 	public void instanciaDB() {
 
-		Technician t1 = new Technician(null, "Edenilson", "775.084.640-95", "41 - 98888-8888");
+		Technician t1 = new Technician(null, "Edenilson F. Chagas", "775.084.640-95", "41 - 98888-8888");
 		Client c1 = new Client(null, "Betina Campos", "837.358.920-19", "41 - 97777-7777");
 		OS os1 = new OS(null, Priority.ALTA, "Teste create OD", Status.ANDAMENTO, t1, c1);
 

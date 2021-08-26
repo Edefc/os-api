@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edenilson.osapi.dtos.TechnicianDto;
 import com.edenilson.osapi.entities.Technician;
 import com.edenilson.osapi.services.TechnicianService;
 
@@ -21,9 +22,10 @@ public class TechnicianResource implements Serializable {
 	private TechnicianService technicianService;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Technician> findById(@PathVariable Integer id) {
-		Technician objTechnician = technicianService.findById(id);
-		return ResponseEntity.ok().body(objTechnician);
+	public ResponseEntity<TechnicianDto> findById(@PathVariable Integer id) {
+		//Technician objTechnician = technicianService.findById(id);
+		TechnicianDto objTechnicianDto = new TechnicianDto(technicianService.findById(id));
+		return ResponseEntity.ok().body(objTechnicianDto);
 	}
 
 }
