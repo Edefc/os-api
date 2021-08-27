@@ -36,6 +36,7 @@ public class DBService implements Serializable {
 		OS os1 = new OS(null, Priority.ALTA, "Teste create OD", Status.ANDAMENTO, t1, c1);
 
 		t1.getListOs().add(os1);
+		t2.getListOs().add(os1);
 		c1.getListOs().add(os1);
 
 		technicianRepository.saveAll(Arrays.asList(t1, t2));

@@ -72,6 +72,20 @@ public class TechnicianService implements Serializable {
 	}
 
 	/*
+	 * Delete por Id
+	 */
+	public void delete(Integer id) {
+		Technician objTechnician = findById(id);
+
+		if (objTechnician.getListOs().size() > 0) {
+			throw new DataIntegratyViolationException("Técnico possue ordem de serviço não pode ser deletado");
+
+		}
+		technicianRepository.deleteById(id);
+
+	}
+
+	/*
 	 * Verifica se CPF já esta cadastrado no banco de dados
 	 */
 	public Technician findByCpf(TechnicianDto objTechnicianDto) {
