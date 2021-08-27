@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edenilson.osapi.dtos.TechnicianDto;
+import com.edenilson.osapi.entities.Person;
 import com.edenilson.osapi.entities.Technician;
+import com.edenilson.osapi.repositories.PersonRepository;
 import com.edenilson.osapi.repositories.TechnicianRepository;
 import com.edenilson.osapi.services.exceptions.DataIntegratyViolationException;
 import com.edenilson.osapi.services.exceptions.ObjectNotFoundException;
@@ -19,6 +21,9 @@ public class TechnicianService implements Serializable {
 
 	@Autowired
 	private TechnicianRepository technicianRepository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 
 	/*
 	 * Pesquisa por Id
@@ -86,10 +91,11 @@ public class TechnicianService implements Serializable {
 	}
 
 	/*
-	 * Verifica se CPF já esta cadastrado no banco de dados
+	 * Busca técnico pelo CPF
 	 */
-	public Technician findByCpf(TechnicianDto objTechnicianDto) {
-		Technician objTechnician = technicianRepository.findByCpf(objTechnicianDto.getCpf());
+	public Person findByCpf(TechnicianDto objTechnicianDto) {
+		Person objTechnician = personRepository.findByCpf(objTechnicianDto.getCpf());
+		
 		if (objTechnician != null) {
 			return objTechnician;
 		}
