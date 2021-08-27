@@ -10,7 +10,10 @@ import com.edenilson.osapi.entities.Technician;
 @Repository
 public interface TechnicianRepository extends JpaRepository<Technician, Integer> {
 
-	@Query("Select obj from Technician obj Where obj.cpf =:cpf")
+	/*
+	 * Pesquisa CPF no banco de dados
+	 */
+	@Query("SELECT obj FROM Technician obj WHERE obj.cpf =:cpf")
 	Technician findByCpf(@Param("cpf") String cpf);
 
 }
