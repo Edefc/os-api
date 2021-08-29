@@ -3,6 +3,8 @@ package com.edenilson.osapi.dtos;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.edenilson.osapi.entities.OS;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,9 +19,15 @@ public class OSDto implements Serializable {
 	private LocalDateTime closingDate;
 	
 	private Integer priority;
+	
+	@NotEmpty(message = "O campo OBSERVAÇÕES é requerido")
 	private String observance;
 	private Integer status;
+	
+	//@NotEmpty(message = "O campo TÉCNICO é requerido")
 	private Integer technician;
+
+	//@NotEmpty(message = "O campo CLIENTE é requerido")
 	private Integer client;
 
 	public OSDto() {

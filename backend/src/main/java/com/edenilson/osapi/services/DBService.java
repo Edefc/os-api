@@ -33,7 +33,7 @@ public class DBService implements Serializable {
 		Technician t1 = new Technician(null, "Edenilson F. Chagas", "775.084.640-95", "41 - 98888-8888");
 		Technician t2 = new Technician(null, "Linus Tavres", "641.760.040-88", "41 - 98888-5555");
 		Client c1 = new Client(null, "Betina Campos", "837.358.920-19", "41 - 97777-7777");
-		OS os1 = new OS(null, Priority.ALTA, "Teste create OD", Status.ANDAMENTO, t1, c1);
+		OS os1 = new OS(null, Priority.ALTA, "Teste create OS", Status.ANDAMENTO, t1, c1);
 
 		t1.getListOs().add(os1);
 		t2.getListOs().add(os1);
