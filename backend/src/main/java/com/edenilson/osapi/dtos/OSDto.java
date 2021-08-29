@@ -38,7 +38,7 @@ public class OSDto implements Serializable {
 		super();
 		this.id = objOs.getId();
 		this.openDate = objOs.getOpenDate();
-		this.closingDate = objOs.getOpenClosing();
+		this.closingDate = objOs.getDateClosing();
 		this.priority = objOs.getPriority().getCod();
 		this.observance = objOs.getObservance();
 		this.status = objOs.getStatus().getCod();

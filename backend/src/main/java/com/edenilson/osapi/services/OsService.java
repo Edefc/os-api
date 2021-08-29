@@ -1,5 +1,6 @@
 package com.edenilson.osapi.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,11 @@ public class OsService {
 		
 		return fromDto(objOs);
 	}
+	public OS update(OSDto objOsDto) {
+		findById(objOsDto.getId());
+		return fromDto(objOsDto);
+	}
+	
 	/*
 	 * Método auxiliar para criar uma Ordem de Serviço
 	 */
@@ -67,10 +73,15 @@ public class OsService {
 		Client cli = clientService.findById(objOs.getClient());
 		newObjOs.setClient(cli);
 		
+		if(newObjOs.getStatus().getCod().equals(2)) {
+			newObjOs.setDateClosing(LocalDateTime.now());
+		}
+		
 		return osRepository.save(newObjOs);
 		
 		
 	}
+
 }
 
 

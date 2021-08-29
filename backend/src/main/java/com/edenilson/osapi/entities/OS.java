@@ -77,11 +77,11 @@ public class OS implements Serializable {
 		this.openDate = openDate;
 	}
 
-	public LocalDateTime getOpenClosing() {
+	public LocalDateTime getDateClosing() {
 		return closingDate;
 	}
 
-	public void setOpenClosing(LocalDateTime openClosing) {
+	public void setDateClosing(LocalDateTime openClosing) {
 		this.closingDate = openClosing;
 	}
 
