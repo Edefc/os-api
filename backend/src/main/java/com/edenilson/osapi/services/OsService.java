@@ -1,5 +1,6 @@
 package com.edenilson.osapi.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,14 @@ public class OsService {
 	public OS findById(Integer id) {
 		Optional<OS> objOs = osRepository.findById(id);
 		return objOs.orElseThrow(
-				() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + "Tipo: " + OS.class.getName()));
+				() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + " Tipo: " + OS.class.getName()));
 
 	}
-
+	/*
+	 * Lista toda as OS´s
+	 */
+	
+	public List<OS> findAll() {
+		return osRepository.findAll();
+	}
 }
