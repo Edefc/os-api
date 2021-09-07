@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.edenilson.osapi.dtos.TechnicianDto;
 import com.edenilson.osapi.entities.Technician;
 import com.edenilson.osapi.services.TechnicianService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/tecnicos")
 public class TechnicianResource implements Serializable {
